@@ -58,8 +58,13 @@ fn resources_dir_path() -> Option<std::path::PathBuf> {
         use std::str::FromStr;
         std::path::PathBuf::from_str("/app")
     };
-    #[cfg(not(any(feature = "packager", feature = "flatpak")))]
+    #[cfg(feature = "nixpkgs")]
+    let root_dir = std::env::current_dir();
+    #[cfg(not(any(feature = "packager", feature = "flatpak", feature = "nixpkgs")))]
     let root_dir = std::env::current_dir();
 
-    root_dir.ok().map(|dir| dir.join("resources"))
+    let output = root_dir.ok().map(|dir| dir.join("resources"));
+
+    println!("{output:?}");
+    output
 }

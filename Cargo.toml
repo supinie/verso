@@ -42,6 +42,7 @@ targets = [
 default = []
 packager = ["dep:cargo-packager-resource-resolver"]
 flatpak = []
+nixpkgs = []
 
 [build-dependencies]
 cfg_aliases = "0.2"
